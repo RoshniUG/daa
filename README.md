@@ -34,7 +34,7 @@ public static void Dijkstras(int s)
 		
 	}
 	visited[s]=1;
-	d[s]=0;
+	d[s]=0;//to maintain no loop thing(to avoid any loops)
 	i=1;
 	while(i<=n-1)
 	{

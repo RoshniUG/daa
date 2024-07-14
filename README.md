@@ -79,3 +79,93 @@ public static void Dijkstras(int s)
 
 	
 }
+
+
+
+
+
+
+
+//PRIMS ALGORITHM:
+
+package prims_algo;
+import java.util.Arrays;
+import java.util.Scanner;//
+
+public class prims {
+	static  int a[][];//it stores the cost matrix;
+	static int n;//for number of vertices;
+
+	public static void main(String args[]) //public: it can be called outside of the class, static:it is called without creating any instance of the class
+	{
+		// TODO Auto-generated method stub
+		System.out.println("enter the number of vertices");
+		Scanner scanner=new Scanner(System.in);
+		n=scanner.nextInt();
+		a=new int[n][n];
+		System.out.println("enter the cost matrix");
+		for(int i=0;i<n;i++)
+		{
+			for(int j=0;j<n;j++)
+			{
+				a[i][j]=scanner.nextInt();
+			}
+		}
+		prim();
+		scanner.close();
+		
+	}
+	public static void prim()
+	{
+		boolean[] selected=new boolean[n];
+		int no_edge=0;
+		int sum=0;
+		Arrays.fill(selected, false);//initialize all elements of the selected array to false
+		selected[0]=true;
+		System.out.println("Edge : Weight");
+		while(no_edge<n-1)
+		{
+			int x=0,y=0,min=999;
+			for(int i=0;i<n;i++)
+			{
+				if(selected[i]==true)//check vertices incuded in the MST;
+				{
+					for(int j=0;j<n;j++)
+					{
+						if(!selected[j] && a[i][j]!=0)
+						{
+							if(min > a[i][j])
+							{
+								min=a[i][j];
+								x=i;
+								y=j;
+							}
+						}
+					}
+				}
+			}
+			System.out.println(x+"-"+y+":"+a[x][y]);
+			sum=sum+a[x][y];
+			selected[y]=true;
+			no_edge++;
+		}
+		System.out.println("Cost of Tree"+sum);
+		
+		
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
